@@ -1,0 +1,42 @@
+:root {
+    --bg: #f4f5fb;
+    --card: #ffffff;
+    --text: #141520;
+    --muted: #7a7f92;
+    --line: #ececf4;
+    --shadow: 0 16px 34px rgba(20, 21, 32, .08);
+
+    --sidebar1: #2b2d3a;
+    --sidebar2: #232433;
+
+    --accent: #5b4bb7;
+    --accent2: #474086;
+
+    --radius: 18px;
+}
+
+
+
+/* =========================
+   Base
+   ========================= */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+}
