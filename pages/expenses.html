@@ -1,11 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../src/expenses.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>expenses</title>
 </head>
 <body>
     
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="balance">
+            <div>Cash Opening Balance : <strong>0</strong></div>
+            <div>Cash Closing Balance : <strong>157916</strong></div>
+        </div>
+
+        <div class="title">Day Book</div>
+
+        <div class="controls">
+            <select>
+                <option>Sort By Name</option>
+                <option>Date</option>
+                <option>Amount</option>
+            </select>
+            <input type="date" value="2019-02-04">
+            <button>Menu</button>
+        </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="tables">
+
+        <!-- Income -->
+        <div class="table-box">
+            <div class="table-title income">Income</div>
+                <div class="table-space">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Item</th>
+                                <th>Description</th>
+                                <th>Mode</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>3434</td>
+                                <td>dsafa</td>
+                                <td>Cash</td>
+                                <td>34</td>
+                                <td>1156</td>
+                                <td>16:05:52</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>asdd</td>
+                                <td>qore</td>
+                                <td>Cash</td>
+                                <td>43</td>
+                                <td>1462</td>
+                                <td>16:10:34</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <div class="total"><p>Total Income : <strong>00000</strong></p></div>
+        </div>
+
+        <!-- Expense -->
+        <div class="table-box">
+            <div class="table-title expense">Expense</div>
+            <div class="table-space">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr. No</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Mode</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>asdfa</td>
+                            <td>34</td>
+                            <td>Cash</td>
+                            <td>343</td>
+                            <td>1372</td>
+                            <td>17:12:31</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>dh</td>
+                            <td>fgs</td>
+                            <td>Cash</td>
+                            <td>56</td>
+                            <td>280</td>
+                            <td>16:04:29</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="total">Total Expense : <strong>0000</strong></div>
+        </div>
+
+    </div>
+
+    <div class="profit">Total Profit : <strong>157916</strong></div>
+
+</div>
 </body>
 </html>

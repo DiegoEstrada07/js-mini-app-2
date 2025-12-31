@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #e5e5e5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #3f3f3f;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.balance {
+    font-size: 14px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.controls select,
+.controls input,
+.controls button {
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.tables {
+    display: flex;
+    gap: 10px;
+}
+
+.table-box {
+    width: 50%;
+    background: white;
+    color: black;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.table-title {
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.table-space{
+    height: 25rem;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.table-title.income {
+    background: #1aa3a3;
+}
+
+.table-title.expense {
+    background: #1aa3a3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+thead {
+    background: #f0f0f0;
+}
+
+th, td {
+    padding: 6px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.total {
+    padding: 8px;
+    background: #f0f0f0;
+    font-weight: bold;
+    text-align: right;
+    
+}
+
+.profit {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+}
