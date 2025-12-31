@@ -3,103 +3,85 @@
     margin: 0px;
     padding: 0px;
 }
+ body {
+        background: #e5e5e5;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
 
-body {
-    background: #e5e5e5;
-    margin: 0;
-    padding: 20px;
-}
+    .container {
+        background: #3f3f3f;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        width: 900px;
+        margin: auto;
+    }
 
-.container {
-    background: #3f3f3f;
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-}
+    .form-section {
+        background: white;
+        color: black;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+    .form-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
 
-.balance {
-    font-size: 14px;
-}
+    .form-group div {
+        flex: 1;
+    }
 
-.title {
-    font-size: 22px;
-    font-weight: bold;
-}
+    label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
 
-.controls select,
-.controls input,
-.controls button {
-    padding: 5px;
-    margin-left: 5px;
-}
+    input, select {
+        width: 100%;
+        padding: 6px;
+    }
 
-.tables {
-    display: flex;
-    gap: 10px;
-}
+    button {
+        background: #1aa3a3;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
 
-.table-box {
-    width: 50%;
-    background: white;
-    color: black;
-    border-radius: 4px;
-    overflow: hidden;
-}
+    button:hover {
+        background: #148787;
+    }
 
-.table-title {
-    padding: 8px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-}
-.table-space{
-    height: 25rem;
-    overflow: scroll;
-    overflow-x: hidden;
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        color: black;
+    }
 
-.table-title.income {
-    background: #1aa3a3;
-}
+    th, td {
+        padding: 6px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        font-size: 13px;
+    }
 
-.table-title.expense {
-    background: #1aa3a3;
-}
+    th {
+        background: #f0f0f0;
+    }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-
-thead {
-    background: #f0f0f0;
-}
-
-th, td {
-    padding: 6px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.total {
-    padding: 8px;
-    background: #f0f0f0;
-    font-weight: bold;
-    text-align: right;
-    
-}
-
-.profit {
-    margin-top: 10px;
-    text-align: right;
-    font-size: 16px;
-    font-weight: bold;
-}
+    .table-title {
+        background: #1aa3a3;
+        color: white;
+        padding: 8px;
+        font-weight: bold;
+        text-align: center;
+    }

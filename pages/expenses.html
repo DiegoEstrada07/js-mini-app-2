@@ -10,115 +10,87 @@
     
 <div class="container">
 
-    <!-- Header -->
-    <div class="header">
-        <div class="balance">
-            <div>Cash Opening Balance : <strong>0</strong></div>
-            <div>Cash Closing Balance : <strong>157916</strong></div>
-        </div>
+    <h2>Day Book</h2>
 
-        <div class="title">Day Book</div>
+    <!-- FORM -->
+    <div class="form-section">
+        <h3>Agregar Ingreso</h3>
 
-        <div class="controls">
-            <select>
-                <option>Sort By Name</option>
-                <option>Date</option>
-                <option>Amount</option>
-            </select>
-            <input type="date" value="2019-02-04">
-            <button>Menu</button>
-        </div>
-    </div>
-
-    <!-- Tables -->
-    <div class="tables">
-
-        <!-- Income -->
-        <div class="table-box">
-            <div class="table-title income">Income</div>
-                <div class="table-space">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sr. No</th>
-                                <th>Item</th>
-                                <th>Description</th>
-                                <th>Mode</th>
-                                <th>Quantity</th>
-                                <th>Amount</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>3434</td>
-                                <td>dsafa</td>
-                                <td>Cash</td>
-                                <td>34</td>
-                                <td>1156</td>
-                                <td>16:05:52</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>asdd</td>
-                                <td>qore</td>
-                                <td>Cash</td>
-                                <td>43</td>
-                                <td>1462</td>
-                                <td>16:10:34</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            <div class="total"><p>Total Income : <strong>00000</strong></p></div>
-        </div>
-
-        <!-- Expense -->
-        <div class="table-box">
-            <div class="table-title expense">Expense</div>
-            <div class="table-space">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Sr. No</th>
-                            <th>Item</th>
-                            <th>Description</th>
-                            <th>Mode</th>
-                            <th>Quantity</th>
-                            <th>Amount</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>asdfa</td>
-                            <td>34</td>
-                            <td>Cash</td>
-                            <td>343</td>
-                            <td>1372</td>
-                            <td>17:12:31</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>dh</td>
-                            <td>fgs</td>
-                            <td>Cash</td>
-                            <td>56</td>
-                            <td>280</td>
-                            <td>16:04:29</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="form-group">
+            <div>
+                <label>Descripción</label>
+                <input type="text" id="description">
             </div>
-            <div class="total">Total Expense : <strong>0000</strong></div>
+            <div>
+                <label>Modo</label>
+                <select id="mode">
+                    <option>Cash</option>
+                    <option>Card</option>
+                </select>
+            </div>
         </div>
 
+        <div class="form-group">
+            <div>
+                <label>Monto</label>
+                <input type="number" id="amount">
+            </div>
+            <div>
+                <label>Hora</label>
+                <input type="time" id="time">
+            </div>
+        </div>
+
+        <button onclick="addIncome()">Submit</button>
     </div>
 
-    <div class="profit">Total Profit : <strong>157916</strong></div>
+    <!-- TABLE -->
+    <div class="table-title">Income</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Description</th>
+                <th>Mode</th>
+                <th>Amount</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="incomeTable"></tbody>
+    </table>
 
 </div>
+
+<script>
+    let count = 1;
+
+    function addIncome() {
+        const description = document.getElementById("description").value;
+        const mode = document.getElementById("mode").value;
+        const amount = document.getElementById("amount").value;
+        const time = document.getElementById("time").value;
+
+        if (!description || !amount || !time) {
+            alert("Completa todos los campos");
+            return;
+        }
+
+        const table = document.getElementById("incomeTable");
+        const row = table.insertRow();
+
+        row.innerHTML = `
+            <td>${count}</td>
+            <td>${description}</td>
+            <td>${mode}</td>
+            <td>${amount}</td>
+            <td>${time}</td>
+        `;
+
+        count++;
+
+        // Limpiar formulario
+        document.querySelectorAll("input").forEach(i => i.value = "");
+    }
+</script>
 </body>
 </html>
