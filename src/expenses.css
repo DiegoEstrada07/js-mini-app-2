@@ -2,8 +2,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-}
- body {
+} body {
         background: #e5e5e5;
         font-family: Arial, sans-serif;
         padding: 20px;
@@ -14,8 +13,18 @@
         color: white;
         padding: 15px;
         border-radius: 5px;
-        width: 900px;
+        width: 1000px;
         margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .forms {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
     }
 
     .form-section {
@@ -23,12 +32,12 @@
         color: black;
         padding: 15px;
         border-radius: 5px;
-        margin-bottom: 15px;
+        width: 50%;
     }
 
     .form-group {
         display: flex;
-        gap: 15px;
+        gap: 10px;
         margin-bottom: 10px;
     }
 
@@ -37,8 +46,8 @@
     }
 
     label {
-        display: block;
         font-size: 13px;
+        display: block;
         margin-bottom: 4px;
     }
 
@@ -51,31 +60,27 @@
         background: #1aa3a3;
         color: white;
         border: none;
-        padding: 8px 15px;
+        padding: 8px;
         cursor: pointer;
         border-radius: 3px;
+        width: 100%;
     }
 
     button:hover {
         background: #148787;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
+    .tables {
+        display: flex;
+        gap: 15px;
+    }
+
+    .table-box {
+        width: 50%;
         background: white;
         color: black;
-    }
-
-    th, td {
-        padding: 6px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-        font-size: 13px;
-    }
-
-    th {
-        background: #f0f0f0;
+        border-radius: 5px;
+        overflow: hidden;
     }
 
     .table-title {
@@ -84,4 +89,20 @@
         padding: 8px;
         font-weight: bold;
         text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 6px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background: #f0f0f0;
     }

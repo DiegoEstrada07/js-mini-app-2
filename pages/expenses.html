@@ -7,90 +7,177 @@
     <title>expenses</title>
 </head>
 <body>
-    
+   
 <div class="container">
 
     <h2>Day Book</h2>
 
-    <!-- FORM -->
-    <div class="form-section">
-        <h3>Agregar Ingreso</h3>
+    <!-- FORM SECTIONS -->
+    <div class="forms">
 
-        <div class="form-group">
-            <div>
-                <label>Descripción</label>
-                <input type="text" id="description">
+        <!-- INCOME FORM -->
+        <div class="form-section">
+            <h3>Income</h3>
+
+            <div class="form-group">
+                <div>
+                    <label>Descripción</label>
+                    <select id="inc_description">
+                        <option>food</option>
+                        <option>entretainment</option>
+                        <option>transport</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Modo</label>
+                    <select id="inc_mode">
+                        <option>Cash</option>
+                        <option>Card</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label>Modo</label>
-                <select id="mode">
-                    <option>Cash</option>
-                    <option>Card</option>
-                </select>
+
+            <div class="form-group">
+                <div>
+                    <label>Monto</label>
+                    <input type="number" id="inc_amount">
+                </div>
+                <div>
+                    <label>Hora</label>
+                    <input type="time" id="inc_time">
+                </div>
             </div>
+
+            <button onclick="addIncome()">Submit Income</button>
         </div>
 
-        <div class="form-group">
-            <div>
-                <label>Monto</label>
-                <input type="number" id="amount">
+        <!-- EXPENSE FORM -->
+        <div class="form-section">
+            <h3>Expense</h3>
+
+            <div class="form-group">
+                <div>
+                    <label>Descripción</label>
+                    <input type="text" id="exp_description">
+                </div>
+                <div>
+                    <label>Modo</label>
+                    <select id="exp_mode">
+                        <option>Cash</option>
+                        <option>Card</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label>Hora</label>
-                <input type="time" id="time">
+
+            <div class="form-group">
+                <div>
+                    <label>Monto</label>
+                    <input type="number" id="exp_amount">
+                </div>
+                <div>
+                    <label>Hora</label>
+                    <input type="time" id="exp_time">
+                </div>
             </div>
+
+            <button onclick="addExpense()">Submit Expense</button>
         </div>
 
-        <button onclick="addIncome()">Submit</button>
     </div>
 
-    <!-- TABLE -->
-    <div class="table-title">Income</div>
-    <table>
-        <thead>
-            <tr>
-                <th>Sr. No</th>
-                <th>Description</th>
-                <th>Mode</th>
-                <th>Amount</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody id="incomeTable"></tbody>
-    </table>
+    <!-- TABLES -->
+    <div class="tables">
+
+        <!-- INCOME TABLE -->
+        <div class="table-box">
+            <div class="table-title">Income</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Description</th>
+                        <th>Mode</th>
+                        <th>Amount</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="incomeTable"></tbody>
+            </table>
+        </div>
+
+        <!-- EXPENSE TABLE -->
+        <div class="table-box">
+            <div class="table-title">Expense</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Description</th>
+                        <th>Mode</th>
+                        <th>Amount</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTable"></tbody>
+            </table>
+        </div>
+
+    </div>
 
 </div>
 
 <script>
-    let count = 1;
+    let incCount = 1;
+    let expCount = 1;
 
     function addIncome() {
-        const description = document.getElementById("description").value;
-        const mode = document.getElementById("mode").value;
-        const amount = document.getElementById("amount").value;
-        const time = document.getElementById("time").value;
+        const d = inc_description.value;
+        const m = inc_mode.value;
+        const a = inc_amount.value;
+        const t = inc_time.value;
 
-        if (!description || !amount || !time) {
-            alert("Completa todos los campos");
+        if (!d || !a || !t) {
+            alert("Completa todos los campos de Income");
             return;
         }
 
-        const table = document.getElementById("incomeTable");
-        const row = table.insertRow();
-
-        row.innerHTML = `
-            <td>${count}</td>
-            <td>${description}</td>
-            <td>${mode}</td>
-            <td>${amount}</td>
-            <td>${time}</td>
+        incomeTable.innerHTML += `
+            <tr>
+                <td>${incCount++}</td>
+                <td>${d}</td>
+                <td>${m}</td>
+                <td>${a}</td>
+                <td>${t}</td>
+            </tr>
         `;
 
-        count++;
+        inc_description.value = inc_amount.value = inc_time.value = "";
+    }
 
-        // Limpiar formulario
-        document.querySelectorAll("input").forEach(i => i.value = "");
+    function addExpense() {
+        const d = exp_description.value;
+        const m = exp_mode.value;
+        const a = exp_amount.value;
+        const t = exp_time.value;
+
+        if (!d || !a || !t) {
+            alert("Completa todos los campos de Expense");
+            return;
+        }
+
+        expenseTable.innerHTML += `
+            <tr>
+                <td>${expCount++}</td>
+                <td>${d}</td>
+                <td>${m}</td>
+                <td>${a}</td>
+                <td>${t}</td>
+            </tr>
+        `;
+
+        exp_description.value = exp_amount.value = exp_time.value = "";
     }
 </script>
+
 </body>
 </html>
