@@ -1,183 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="../src/expenses.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>expenses</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker — Calendar</title>
+    <link rel="stylesheet" href="../src/expenses.css" />
 </head>
+
 <body>
-   
-<div class="container">
-
-    <h2>Day Book</h2>
-
-    <!-- FORM SECTIONS -->
-    <div class="forms">
-
-        <!-- INCOME FORM -->
-        <div class="form-section">
-            <h3>Income</h3>
-
-            <div class="form-group">
-                <div>
-                    <label>Descripción</label>
-                    <select id="inc_description">
-                        <option>food</option>
-                        <option>entretainment</option>
-                        <option>transport</option>
-                    </select>
+    <header>
+        <div class="app">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="brand">
+                    <div class="brand-badge">🪙</div>
+                    <div class="brand-text">
+                        <strong>Royal Coins</strong>
+                        <span>Expense Tracker</span>
+                    </div>
                 </div>
-                <div>
-                    <label>Modo</label>
-                    <select id="inc_mode">
-                        <option>Cash</option>
-                        <option>Card</option>
-                    </select>
+                <!-- Total Balance -->
+                <div class="balance balance-top">
+                    <span class="ico">💼</span>
+                    <div class="balance-text">
+                        <span class="label">Balance</span>
+                        <strong>$1,523.93</strong>
+                    </div>
                 </div>
-            </div>
+                <nav class="menu">
+                    <a class="menu-item" href="../pages/home.html">
+                        <span class="ico">🏠</span><span>Home</span>
+                    </a>
+                    <a class="menu-item active" href="../pages/expenses.html">
+                        <span class="ico">💳</span><span>Expenses</span>
+                    </a>
+                    <a class="menu-item" href="../pages/calendar.html">
+                        <span class="ico">📅</span><span>Calendar</span>
+                    </a>
+                    <a class="menu-item" href="#">
+                        <span class="ico">⚙️</span><span>Settings</span>
+                    </a>
+                </nav>
 
-            <div class="form-group">
-                <div>
-                    <label>Monto</label>
-                    <input type="number" id="inc_amount">
-                </div>
-                <div>
-                    <label>Hora</label>
-                    <input type="time" id="inc_time">
-                </div>
-            </div>
+            </aside>
 
-            <button onclick="addIncome()">Submit Income</button>
         </div>
+    </header>
+    <main>
 
-        <!-- EXPENSE FORM -->
-        <div class="form-section">
-            <h3>Expense</h3>
-
-            <div class="form-group">
-                <div>
-                    <label>Descripción</label>
-                    <input type="text" id="exp_description">
-                </div>
-                <div>
-                    <label>Modo</label>
-                    <select id="exp_mode">
-                        <option>Cash</option>
-                        <option>Card</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div>
-                    <label>Monto</label>
-                    <input type="number" id="exp_amount">
-                </div>
-                <div>
-                    <label>Hora</label>
-                    <input type="time" id="exp_time">
-                </div>
-            </div>
-
-            <button onclick="addExpense()">Submit Expense</button>
-        </div>
-
-    </div>
-
-    <!-- TABLES -->
-    <div class="tables">
-
-        <!-- INCOME TABLE -->
-        <div class="table-box">
-            <div class="table-title">Income</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Sr. No</th>
-                        <th>Description</th>
-                        <th>Mode</th>
-                        <th>Amount</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="incomeTable"></tbody>
-            </table>
-        </div>
-
-        <!-- EXPENSE TABLE -->
-        <div class="table-box">
-            <div class="table-title">Expense</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Sr. No</th>
-                        <th>Description</th>
-                        <th>Mode</th>
-                        <th>Amount</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="expenseTable"></tbody>
-            </table>
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-    let incCount = 1;
-    let expCount = 1;
-
-    function addIncome() {
-        const d = inc_description.value;
-        const m = inc_mode.value;
-        const a = inc_amount.value;
-        const t = inc_time.value;
-
-        if (!d || !a || !t) {
-            alert("Completa todos los campos de Income");
-            return;
-        }
-
-        incomeTable.innerHTML += `
-            <tr>
-                <td>${incCount++}</td>
-                <td>${d}</td>
-                <td>${m}</td>
-                <td>${a}</td>
-                <td>${t}</td>
-            </tr>
-        `;
-
-        inc_description.value = inc_amount.value = inc_time.value = "";
-    }
-
-    function addExpense() {
-        const d = exp_description.value;
-        const m = exp_mode.value;
-        const a = exp_amount.value;
-        const t = exp_time.value;
-
-        if (!d || !a || !t) {
-            alert("Completa todos los campos de Expense");
-            return;
-        }
-
-        expenseTable.innerHTML += `
-            <tr>
-                <td>${expCount++}</td>
-                <td>${d}</td>
-                <td>${m}</td>
-                <td>${a}</td>
-                <td>${t}</td>
-            </tr>
-        `;
-
-        exp_description.value = exp_amount.value = exp_time.value = "";
-    }
-</script>
-
+    </main>
 </body>
+
+
+
 </html>
