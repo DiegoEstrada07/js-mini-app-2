@@ -37,8 +37,10 @@ body {
 }
 
 .app {
+    height: 100%;
     min-height: 100vh;
     display: flex;
+    position: absolute;
 }
 /* =========================
    Sidebar
@@ -139,4 +141,158 @@ body {
     width: 20px;
     display: inline-grid;
     place-items: center;
+}
+
+/*Tables*/
+/*
+.container {
+        display: block;
+        margin-left: 16.875rem;
+    }
+
+    .section {
+        width: 50%;
+        border-right: 1px solid #999;
+        width: 100%;
+    }
+
+    .section:last-child {
+        border-right: none;
+    }
+
+    .header {
+        background: #00bcd4;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        height: 100%;
+        overflow: scroll    ;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 6px;
+        text-align: center;
+    }
+
+    th {
+        background: #e0e0e0;
+        font-weight: bold;
+    }
+
+    .footer {
+        background: #555;
+        color: #fff;
+        padding: 10px;
+        text-align: right;
+        font-weight: bold;
+    }
+        */
+
+
+/* BOTÓN + */
+.add-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #00bcd4;
+    color: #fff;
+    font-size: 36px;
+    border: none;
+    cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 320px;
+    border-radius: 6px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content button {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+}
+
+.close-btn {
+    background: #ccc;
+}
+
+/* TABLAS */
+.container {
+    display: flex;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-left: 269px;
+}
+
+.section {
+    width: 50%;
+    border-right: 1px solid #999;
+}
+
+.section:last-child {
+    border-right: none;
+}
+
+.header {
+    background: #00bcd4;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+th {
+    background: #e0e0e0;
+}
+
+.delete-btn {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
 }

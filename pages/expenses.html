@@ -49,6 +49,145 @@
     </header>
     <main>
 
+<!-- BOTÓN + -->
+<button class="add-btn" onclick="openModal()">+</button>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3>Agregar registro</h3>
+
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+
+        <input type="text" id="item" placeholder="Item">
+        <input type="text" id="desc" placeholder="Description">
+        <input type="number" id="qty" placeholder="Quantity">
+
+        <button onclick="addData()">Guardar</button>
+        <button class="close-btn" onclick="closeModal()">Cancelar</button>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- INCOME -->
+<div class="section">
+    <div class="header">Income</div>
+    <table id="incomeTable">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Mode</th>
+                <th>Quantity</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="footer">Total Expense : <span id="expenseTotal">0</span></div>
+</div>
+
+<!-- EXPENSE -->
+<div class="section">
+    <div class="header">Expense</div>
+    <table id="expenseTable">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Mode</th>
+                <th>Quantity</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="footer">Total Expense : <span id="expenseTotal">0</span></div>
+</div>
+
+</div>
+
+<script>
+let incomeCount = 0;
+let expenseCount = 0;
+
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function addData() {
+    const type = document.getElementById("type").value;
+    const item = document.getElementById("item").value;
+    const desc = document.getElementById("desc").value;
+    const qty = document.getElementById("qty").value;
+
+    if (!item) {
+        alert("Completa el campo Item");
+        return;
+    }
+
+    const now = new Date();
+    const day = now.toLocaleDateString();
+    const time = now.toLocaleTimeString();
+
+    const tableBody = type === "income"
+        ? document.querySelector("#incomeTable tbody")
+        : document.querySelector("#expenseTable tbody");
+
+    const count = type === "income" ? ++incomeCount : ++expenseCount;
+
+    const row = tableBody.insertRow();
+    row.innerHTML = `
+        <td>${count}</td>
+        <td>${item}</td>
+        <td>${desc}</td>
+        <td>Cash</td>
+        <td>${qty}</td>
+        <td>${day}</td>
+        <td>${time}</td>
+        <td>
+            <button class="delete-btn" onclick="deleteRow(this)">🗑️</button>
+        </td>
+    `;
+
+    document.getElementById("item").value = "";
+    document.getElementById("desc").value = "";
+    document.getElementById("qty").value = "";
+    closeModal();
+}
+
+function deleteRow(btn) {
+    const row = btn.closest("tr");
+    const tbody = row.parentNode;
+    row.remove();
+
+    // Reordenar Sr.No
+    [...tbody.rows].forEach((tr, index) => {
+        tr.cells[0].innerText = index + 1;
+    });
+
+    // Ajustar contadores
+    if (tbody.parentElement.id === "incomeTable") {
+        incomeCount = tbody.rows.length;
+    } else {
+        expenseCount = tbody.rows.length;
+    }
+}
+</script>
     </main>
 </body>
 
