@@ -1,0 +1,39 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "date": "2025-01-10",
+      "description": "Groceries",
+      "category": "Food",
+      "amount": -120,
+      "type": "expense"
+    },
+    {
+      "id": 2,
+      "date": "2025-01-08",
+      "description": "Salary",
+      "category": "income",
+      "amount": 3000,
+      "type": "income"
+    },
+    {
+      "type": "income",
+      "description": "mesada",
+      "item": "mesada",
+      "category": "Income",
+      "amount": 100,
+      "id": 1767538107837,
+      "date": "2026-01-04"
+    },
+    {
+      "type": "expense",
+      "description": "gaseosa",
+      "item": "gaseosa",
+      "category": "food",
+      "amount": -3,
+      "id": 1767670259238,
+      "date": "2026-01-06"
+    }
+  ],
+  "savings": 2977
+}

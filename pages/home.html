@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker — Home</title>
+    <link rel="stylesheet" href="../css/home.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-badge">🪙</div>
+                <div class="brand-text">
+                    <strong>Royal Coins</strong>
+                    <span>Expense Tracker</span>
+                </div>
+            </div>
+            
+            <!-- Total Balance -->
+            <div class="balance balance-top">
+                <span class="ico">💼</span>
+                <div class="balance-text">
+                    <span class="label">Balance</span>
+                    <strong id="sidebarBalance">$0.00</strong>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="menu">
+                <a class="menu-item active" href="../pages/home.html">
+                    <span class="ico">🏠</span><span>Home</span>
+                </a>
+                <a class="menu-item" href="../pages/expenses.html">
+                    <span class="ico">💳</span><span>Expenses</span>
+                </a>
+                <a class="menu-item" href="../pages/calendar.html">
+                    <span class="ico">📅</span><span>Calendar</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="ico">⚙️</span><span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Dashboard</h1>
+                <div class="total-balance-display">
+                    Total Balance: <span id="totalBalance">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="cards-container">
+                <div class="card card-income">
+                    <div class="card-label">Income</div>
+                    <div class="card-value" id="incomeCard">$0.00</div>
+                </div>
+                <div class="card card-expense">
+                    <div class="card-label">Expenses</div>
+                    <div class="card-value" id="expenseCard">$0.00</div>
+                </div>
+                <div class="card card-savings">
+                    <div class="card-label">Savings</div>
+                    <div class="card-value" id="savingsCard">$0.00</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <!-- Pie Chart: Income vs Expenses -->
+                <div class="chart-box">
+                    <h3>Income vs Expenses</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+
+                <!-- Bar Chart: By Category -->
+                <div class="chart-box">
+                    <h3>Transactions by Category</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Line Chart: Balance Trend -->
+            <div class="chart-box full-width">
+                <h3>Balance Trend</h3>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <!-- Recent Transactions Table -->
+            <div class="recent-transactions">
+                <h3>Recent Transactions</h3>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <p>No transactions yet. Add one from the Expenses page.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../script/dataManager.js"></script>
+    <script src="../script/home.js"></script>
+</body>
+
+</html>
