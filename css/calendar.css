@@ -555,4 +555,30 @@ body {
 }
 
 
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 980px) {
+    .summary-card {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "head"
+            "list"
+            "form";
+    }
 
+        .summary-list {
+            border-right: 0;
+            border-bottom: 1px solid var(--line);
+        }
+        }
+    
+        @media (max-width: 760px) {
+            .sidebar {
+                display: none;
+            }
+
+        .page-title {
+            font-size: 28px;
+        }
+        }
