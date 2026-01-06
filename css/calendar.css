@@ -374,3 +374,185 @@ body {
     background: rgba(91, 75, 183, .10);
     color: var(--accent2);
 }
+/* =========================
+   Calendar Card
+   ========================= */
+.calendar-card {
+    min-height: 620px;
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+    border-bottom: 1px solid var(--line);
+}
+
+.icon-btn {
+    width: 44px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #fbfbff;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.icon-btn:hover {
+    transform: translateY(-1px);
+}
+
+.month {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.chev {
+    color: var(--muted);
+}
+
+.calendar {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 14px;
+    padding: 10px 2px 16px;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* 6 rows, responsive height */
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, clamp(140px, 16vh, 180px));
+    gap: 14px;
+}
+
+/* Day cell */
+.dayCell {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #fff;
+    padding: 10px 10px 40px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.dayCell:hover {
+    transform: translateY(-1px);
+    background: #fbfbff;
+}
+
+.dayCell.muted {
+    color: #a7aaba;
+    background: #fcfcff;
+}
+
+/* Number */
+.dnum {
+    font-weight: 900;
+    color: #142b8c;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+/* Items */
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    /* evita scroll y recortes raros */
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    font-size: 16px;
+    min-height: 26px;
+}
+
+.catIcon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}
+
+.catName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.amt {
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+}
+
+.neg {
+    color: #9c2c2c;
+}
+
+.pos {
+    color: #1b7a3a;
+}
+
+/* Footer total */
+.dayFooter {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 12px;
+    background: rgba(255, 255, 255, .55);
+    border-top: 1px solid rgba(0, 0, 0, .06);
+}
+
+/* Hide footer if empty (no "0" days) */
+.dayFooter:empty {
+    display: none;
+}
+
+.totalLabel {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.dayTotal {
+    font-size: 16px;
+    font-weight: 900;
+    font-style: normal;
+    color: #111;
+}
+
+/* Hint */
+.card-hint {
+    margin: 0;
+    padding: 0 14px 16px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+
