@@ -1,101 +1,143 @@
-// JSON 
-let data = {
-    project: {
-        name: "Income & Expense Tracker",
-        createdAt: "2026-01-02"
-    },
+let transactionsByType = {
     income: [],
     expense: []
 };
 
-// MODAL 
+// Initialize tables on page load
+async function initializeTables() {
+    const transactions = await DataManager.getTransactions();
+    
+    // Separate by type
+    transactionsByType.income = transactions.filter(t => t.type === 'income');
+    transactionsByType.expense = transactions.filter(t => t.type === 'expense');
+
+    // Render tables
+    renderIncome();
+    renderExpense();
+    updateBalance();
+}
+
 function openModal() {
     document.getElementById("modal").style.display = "flex";
+    // Reset form
+    document.getElementById("type").value = "income";
+    document.getElementById("item").value = "";
+    document.getElementById("desc").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("qty").value = "";
 }
 
 function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-// RENDER
-function renderTable(type) {
-    const tbody = document.querySelector(`#${type}Table tbody`);
-    tbody.innerHTML = "";
-
-    data[type].forEach((item, index) => {
-        const row = tbody.insertRow();
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${item.item}</td>
-            <td>${item.description}</td>
-            <td>${item.mode}</td>
-            <td>${item.quantity }</td>
-            <td>${item.day}</td>
-            <td>${item.time}</td>
-            <td>
-                <button class="delete-btn" onclick="deleteItem('${type}', ${item.id})">🗑️</button>
-            </td>
-        `;
-    });
-
-    updateTotals(); // 🔥 actualizar totales
-}
-
-
-// ADD
-function addData() {
+async function addData() {
     const type = document.getElementById("type").value;
     const item = document.getElementById("item").value;
     const desc = document.getElementById("desc").value;
-    const qty = document.getElementById("qty").value;
+    const category = document.getElementById("category").value;
+    const amount = parseFloat(document.getElementById("qty").value);
 
-    if (!item) {
-        alert("Completa el campo Item");
+    if (!item || !amount) {
+        alert("Completa los campos Item y Amount");
         return;
     }
 
-    const now = new Date();
-    const newItem = {
-        id: Date.now(),
+    // Create transaction object
+    const transaction = {
+        type: type,
+        description: item,
         item: item,
-        description: desc,
-        mode: "Cash",
-        quantity: qty,
-        day: now.toLocaleDateString(),
-        time: now.toLocaleTimeString()
+        category: category || 'Other',
+        amount: type === 'expense' ? -Math.abs(amount) : amount
     };
 
-    data[type].push(newItem);
-    renderTable(type);
-
-    document.getElementById("item").value = "";
-    document.getElementById("desc").value = "";
-    document.getElementById("qty").value = "";
-    closeModal();
+    try {
+        // Save to server
+        await DataManager.addTransaction(transaction);
+        
+        // Refresh tables
+        await initializeTables();
+        closeModal();
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
-// DELETE
-function deleteItem(type, id) {
-    data[type] = data[type].filter(item => item.id !== id);
-    renderTable(type);
+async function deleteTransaction(id) {
+    if (confirm("¿Eliminar esta transacción?")) {
+        try {
+            await DataManager.deleteTransaction(id);
+            await initializeTables();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 }
 
-// TABLE
-renderTable("income");
-renderTable("expense");
+function renderIncome() {
+    const tbody = document.querySelector("#incomeTable tbody");
+    tbody.innerHTML = "";
 
-function updateTotals() {
-    const incomeTotal = data.income.reduce(
-        (sum, item) => sum + Number(item.quantity),
-        0
-    );
+    transactionsByType.income.forEach((t, index) => {
+        const date = new Date(t.date).toLocaleDateString();
+        const time = new Date(t.date).toLocaleTimeString();
 
-    const expenseTotal = data.expense.reduce(
-        (sum, item) => sum + Number(item.quantity),
-        0
-    );
-
-    document.getElementById("incomeTotal").innerText = incomeTotal;
-    document.getElementById("expenseTotal").innerText = expenseTotal;
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${t.item || t.description}</td>
+            <td>${t.description || '-'}</td>
+            <td>${t.category}</td>
+            <td>${formatCurrency(t.amount)}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            <td>
+                <button class="delete-btn" onclick="deleteTransaction(${t.id})">🗑️</button>
+            </td>
+        `;
+    });
 }
 
+function renderExpense() {
+    const tbody = document.querySelector("#expenseTable tbody");
+    tbody.innerHTML = "";
+
+    transactionsByType.expense.forEach((t, index) => {
+        const date = new Date(t.date).toLocaleDateString();
+        const time = new Date(t.date).toLocaleTimeString();
+
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${t.item || t.description}</td>
+            <td>${t.description || '-'}</td>
+            <td>${t.category}</td>
+            <td>${formatCurrency(Math.abs(t.amount))}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            <td>
+                <button class="delete-btn" onclick="deleteTransaction(${t.id})">🗑️</button>
+            </td>
+        `;
+    });
+}
+
+async function updateBalance() {
+    const totals = await DataManager.calculateTotals();
+    
+    // Update totals
+    const incomeTotal = transactionsByType.income.reduce((sum, t) => sum + t.amount, 0);
+    const expenseTotal = transactionsByType.expense.reduce((sum, t) => sum + Math.abs(t.amount), 0);
+
+    document.getElementById("incomeTotal").textContent = formatCurrency(incomeTotal);
+    document.getElementById("expenseTotal").textContent = formatCurrency(expenseTotal);
+    document.getElementById("sidebarBalance").textContent = formatCurrency(totals.total);
+}
+
+// Initialize on page load
+window.addEventListener('load', initializeTables);
+
+// Listen for custom transaction events
+window.addEventListener('transactionAdded', initializeTables);
+window.addEventListener('transactionDeleted', initializeTables);
