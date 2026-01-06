@@ -231,6 +231,7 @@ selectedDayList?.addEventListener("click", (e) => {
   // re-render day panel + calendar
   renderSelectedDay(toISODate(selectedDate));
   render();
+  updateSidebarBalance(); 
 });
 
 /* =========================
@@ -445,14 +446,42 @@ form?.addEventListener("submit", (e) => {
   selectedDate = new Date(date + "T00:00:00");
   renderSelectedDay(date);
   render();
+  updateSidebarBalance(); 
 });
+
+/* =========================
+  Balance in sidebar
+========================= */
+function formatCurrency(n){
+  const num = Number(n) || 0;
+  return num.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
+
+async function updateSidebarBalance(){
+  const el = document.getElementById("sidebarBalance");
+  if (!el) return;
+
+  if (typeof DataManager === "undefined") {
+    console.warn("DataManager not found. Did you include dataManager.js?");
+    return;
+  }
+
+  const totals = await DataManager.calculateTotals();
+  el.textContent = formatCurrency(totals.total);
+}
+
+
 
 /* =========================
    INIT
 ========================= */
-// first, move due reminders to expenses (if DataManager is available), then render
+// first, move due reminders to expenses (if DataManager is available), then update Balance, finally render
 if (typeof DataManager !== 'undefined') {
-  moveDueItemsToExpenses().then(() => render());
+  moveDueItemsToExpenses().then(() => {
+    render();
+    updateSidebarBalance();
+  });
 } else {
   render();
 }
+
