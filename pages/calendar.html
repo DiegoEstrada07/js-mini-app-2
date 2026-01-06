@@ -376,10 +376,67 @@
 
                         </div>
                     </section>
+                    <!-- DAY SUMMARY CARD -->
+                    <section class="card summary-card">
+                        <header class="summary-head">
+                            <strong id="selectedDayTitle">Thursday, May 9</strong>
+                            <span class="sub">Daily total: <b class="amt" id="selectedDayTotal">$132.50</b></span>
+                        </header>
+                    
+                    
+                        <div class="summary-list" id="selectedDayList">
+                            <div class="row">
+                                <span class="badge bill">Bills</span>
+                                <div class="row-mid">
+                                    <span class="row-title">Electricity</span>
+                                    <span class="row-meta">home-bills</span>
+                                </div>
+                                <span class="row-amt">-$80.00</span>
+                                <button class="trash" aria-label="Delete">🗑️</button>
+                            </div>
 
-                    <section class="card summary-card"></section>
-                </div>
-            </section>
+                            <div class="row">
+                                <span class="badge groceries">Groceries</span>
+                                <div class="row-mid">
+                                    <span class="row-title">Supermarket</span>
+                                    <span class="row-meta">groceries</span>
+                                </div>
+                                <span class="row-amt">-$32.50</span>
+                                <button class="trash" aria-label="Delete">🗑️</button>
+                            </div>
+                            
+                            <div class="row">
+                                <span class="badge car">Car</span>
+                                <div class="row-mid">
+                                    <span class="row-title">Gasoline</span>
+                                    <span class="row-meta">car</span>
+                                </div>
+                                <span class="row-amt">-$20.00</span>
+                                <button class="trash" aria-label="Delete">🗑️</button>
+                            </div>
+                            </div>
+                            
+                            <form class="add-form">
+                                <div class="date-row">
+                                    <div class="date-field">
+                                        <span class="mini-ico">📅</span>
+                                        <input id="selectedDateInput" type="date" value="2024-05-09">
+                            
+                                    </div>
+                                    <button class="icon-btn" type="button" aria-label="Pick date">📆</button>
+                                </div>
+                            
+                                <input class="input" type="text" placeholder="Add expense or reminder..." />
+                            
+                                <div class="type-row">
+                                    <button type="button" class="chip active" data-category="groceries">Groceries</button>
+                                    <button type="button" class="chip" data-category="bills">Bills</button>
+                                    <button type="button" class="chip" data-category="free_time">Free time</button>
+                                    <button type="button" class="chip" data-category="car">Car</button>
+                            
+                                </div>
+                                </div>
+                                </section>
 
     </div>
 </body>
