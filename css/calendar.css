@@ -140,3 +140,40 @@ body {
     display: inline-grid;
     place-items: center;
 }
+/* =========================
+   Content / Layout
+   ========================= */
+.content {
+    padding: 18px;
+}
+
+.page-title {
+    font-size: 34px;
+    margin: 8px 0 16px;
+    letter-spacing: -0.6px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "summary"
+        "calendar";
+    gap: 18px;
+}
+
+.calendar-card {
+    grid-area: calendar;
+}
+
+.summary-card {
+    grid-area: summary;
+}
+
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
