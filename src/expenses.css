@@ -144,61 +144,7 @@ body {
 }
 
 /*Tables*/
-/*
-.container {
-        display: block;
-        margin-left: 16.875rem;
-    }
 
-    .section {
-        width: 50%;
-        border-right: 1px solid #999;
-        width: 100%;
-    }
-
-    .section:last-child {
-        border-right: none;
-    }
-
-    .header {
-        background: #00bcd4;
-        color: #fff;
-        text-align: center;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-        height: 100%;
-        overflow: scroll    ;
-    }
-
-    th, td {
-        border: 1px solid #ccc;
-        padding: 6px;
-        text-align: center;
-    }
-
-    th {
-        background: #e0e0e0;
-        font-weight: bold;
-    }
-
-    .footer {
-        background: #555;
-        color: #fff;
-        padding: 10px;
-        text-align: right;
-        font-weight: bold;
-    }
-        */
-
-
-/* BOTÓN + */
 .add-btn {
     position: fixed;
     bottom: 20px;
@@ -250,14 +196,13 @@ body {
 /* TABLAS */
 .container {
     display: flex;
-    background: #fff;
-    border: 1px solid #ccc;
-    margin-left: 269px;
+    margin-left: 259px;
 }
 
 .section {
     width: 50%;
-    border-right: 1px solid #999;
+    border: 1px solid #999;
+    margin-left: 10px;
 }
 
 .section:last-child {
@@ -295,4 +240,13 @@ th {
     border: none;
     padding: 4px 8px;
     cursor: pointer;
+}
+
+/*TOTAL*/
+.footer {
+    background: #555;
+    color: #fff;
+    padding: 10px;
+    text-align: right;
+    font-weight: bold;
 }

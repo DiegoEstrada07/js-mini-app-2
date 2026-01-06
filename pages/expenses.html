@@ -64,10 +64,10 @@
 
         <input type="text" id="item" placeholder="Item">
         <input type="text" id="desc" placeholder="Description">
-        <input type="number" id="qty" placeholder="Quantity">
+        <input type="number" id="qty" placeholder="Amount   ">
 
-        <button onclick="addData()">Guardar</button>
-        <button class="close-btn" onclick="closeModal()">Cancelar</button>
+        <button onclick="addData()">Safe</button>
+        <button class="close-btn" onclick="closeModal()">Cancel</button>
     </div>
 </div>
 
@@ -83,7 +83,7 @@
                 <th>Item</th>
                 <th>Description</th>
                 <th>Mode</th>
-                <th>Quantity</th>
+                <th>Amount</th>
                 <th>Day</th>
                 <th>Time</th>
                 <th>Action</th>
@@ -91,7 +91,9 @@
         </thead>
         <tbody></tbody>
     </table>
-    <div class="footer">Total Expense : <span id="expenseTotal">0</span></div>
+    <div class="footer">
+    Total Income: <span id="incomeTotal">0</span>
+    </div>
 </div>
 
 <!-- EXPENSE -->
@@ -104,7 +106,7 @@
                 <th>Item</th>
                 <th>Description</th>
                 <th>Mode</th>
-                <th>Quantity</th>
+                <th>Amount</th>
                 <th>Day</th>
                 <th>Time</th>
                 <th>Action</th>
@@ -112,82 +114,14 @@
         </thead>
         <tbody></tbody>
     </table>
-    <div class="footer">Total Expense : <span id="expenseTotal">0</span></div>
+    <div class="footer">
+    Total Expense: <span id="expenseTotal">0</span>
+    </div>
 </div>
 
 </div>
 
-<script>
-let incomeCount = 0;
-let expenseCount = 0;
-
-function openModal() {
-    document.getElementById("modal").style.display = "flex";
-}
-
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
-
-function addData() {
-    const type = document.getElementById("type").value;
-    const item = document.getElementById("item").value;
-    const desc = document.getElementById("desc").value;
-    const qty = document.getElementById("qty").value;
-
-    if (!item) {
-        alert("Completa el campo Item");
-        return;
-    }
-
-    const now = new Date();
-    const day = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
-
-    const tableBody = type === "income"
-        ? document.querySelector("#incomeTable tbody")
-        : document.querySelector("#expenseTable tbody");
-
-    const count = type === "income" ? ++incomeCount : ++expenseCount;
-
-    const row = tableBody.insertRow();
-    row.innerHTML = `
-        <td>${count}</td>
-        <td>${item}</td>
-        <td>${desc}</td>
-        <td>Cash</td>
-        <td>${qty}</td>
-        <td>${day}</td>
-        <td>${time}</td>
-        <td>
-            <button class="delete-btn" onclick="deleteRow(this)">🗑️</button>
-        </td>
-    `;
-
-    document.getElementById("item").value = "";
-    document.getElementById("desc").value = "";
-    document.getElementById("qty").value = "";
-    closeModal();
-}
-
-function deleteRow(btn) {
-    const row = btn.closest("tr");
-    const tbody = row.parentNode;
-    row.remove();
-
-    // Reordenar Sr.No
-    [...tbody.rows].forEach((tr, index) => {
-        tr.cells[0].innerText = index + 1;
-    });
-
-    // Ajustar contadores
-    if (tbody.parentElement.id === "incomeTable") {
-        incomeCount = tbody.rows.length;
-    } else {
-        expenseCount = tbody.rows.length;
-    }
-}
-</script>
+<script src="../js/expenses.js"></script>
     </main>
 </body>
 
