@@ -277,6 +277,46 @@ function render() {
   renderSelectedDay(toISODate(selectedDate));
 }
 
+// Move due reminders (date <= today) to Expenses via DataManager
+async function moveDueItemsToExpenses() {
+  if (typeof DataManager === 'undefined') return;
+  const all = loadItems();
+  const todayStr = toISODate(new Date());
+
+  const due = all.filter(it => {
+    const t = it.date;
+    // only process reminders (not already persisted transactions)
+    return t && (it.type === 'reminder' || !it.type) && t <= todayStr;
+  });
+
+  if (!due.length) return;
+
+  for (const it of due) {
+    try {
+      // Build transaction compatible with DataManager
+      const transaction = {
+        type: 'expense',
+        description: it.name || it.title || '',
+        item: it.name || it.title || '',
+        category: it.category || 'Other',
+        amount: Number(it.amount) || 0,
+        date: new Date().toISOString()
+      };
+
+      // ensure negative
+      if (transaction.amount > 0) transaction.amount = -Math.abs(transaction.amount);
+
+      await DataManager.addTransaction(transaction);
+    } catch (err) {
+      console.error('Failed moving item to expenses', it, err);
+    }
+  }
+
+  // remove moved items and persist
+  const remaining = all.filter(x => !due.some(d => d.id === x.id));
+  saveItems(remaining);
+}
+
 /* =========================
    EVENTS
 ========================= */
@@ -410,4 +450,9 @@ form?.addEventListener("submit", (e) => {
 /* =========================
    INIT
 ========================= */
-render();
+// first, move due reminders to expenses (if DataManager is available), then render
+if (typeof DataManager !== 'undefined') {
+  moveDueItemsToExpenses().then(() => render());
+} else {
+  render();
+}

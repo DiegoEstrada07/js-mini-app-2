@@ -33,7 +33,16 @@
       "amount": -3,
       "id": 1767670259238,
       "date": "2026-01-06"
+    },
+    {
+      "type": "expense",
+      "description": "market",
+      "item": "market",
+      "category": "groceries",
+      "amount": -35,
+      "date": "2026-01-06",
+      "id": 1767701771349
     }
   ],
-  "savings": 2977
+  "savings": 2942
 }
