@@ -15,8 +15,6 @@
     --radius: 18px;
 }
 
-
-
 /* =========================
    Base
    ========================= */
@@ -40,6 +38,7 @@ body {
     min-height: 100vh;
     display: flex;
 }
+
 /* =========================
    Sidebar
    ========================= */
@@ -141,6 +140,38 @@ body {
     place-items: center;
 }
 /* =========================
+                                Main=========================*/
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Buttons */
+.btn {
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 14px 26px rgba(91, 75, 183, .24);
+}
+
+.btn-wide {
+    width: 100%;
+}
+                                                                /* =========================
    Content / Layout
    ========================= */
 .content {
@@ -177,6 +208,7 @@ body {
     box-shadow: var(--shadow);
     overflow: hidden;
 }
+
 /* =========================
    Summary Card
    ========================= */
@@ -260,17 +292,17 @@ body {
 
 /* Badges */
 .badge {
-    height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
+    padding: 6px 12px;
     border-radius: 12px;
     font-weight: 800;
     border: 1px solid transparent;
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+        text-align: center;
+        line-height: 1.1;
+        max-width: 160px;
 }
 
 .badge.bill {
@@ -354,6 +386,36 @@ body {
     gap: 8px;
 }
 
+/* row for main input + amount field */
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.amt-input {
+    width: 140px;
+    padding: 10px;
+    text-align: right;
+}
+
+/* amount field with $ prefix */
+.amt-field {
+    position: relative;
+    width: 140px;
+}
+
+.amt-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.amt-input {
+    padding-left: 28px;
+}
 .chip {
     border: 1px solid var(--line);
     background: #fff;
@@ -374,6 +436,7 @@ body {
     background: rgba(91, 75, 183, .10);
     color: var(--accent2);
 }
+
 /* =========================
    Calendar Card
    ========================= */
@@ -546,6 +609,25 @@ body {
     color: #111;
 }
 
+/* Color totals according to sign */
+.dayTotal.neg {
+    color: #9c2c2c;
+}
+
+.dayTotal.pos {
+    color: #1b7a3a;
+}
+
+/* row amount coloring */
+.row-amt.neg {
+    color: #9c2c2c;
+    font-weight: 900;
+}
+
+.row-amt.pos {
+    color: #1b7a3a;
+    font-weight: 900;
+}
 /* Hint */
 .card-hint {
     margin: 0;
@@ -555,6 +637,19 @@ body {
 }
 
 
+.monthPicker {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 1px;
+    height: 1px;
+}
+
+.month {
+    position: relative;
+}
+
+/* si no lo tenías */
 /* =========================
    Responsive
    ========================= */
