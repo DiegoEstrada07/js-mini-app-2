@@ -111,7 +111,7 @@ async function addData() {
 }
 
 async function deleteTransaction(id) {
-    if (confirm("A¨Eliminar esta transacciA3n?")) {
+    if (confirm("Eliminar esta transacción?")) {
         try {
             await DataManager.deleteTransaction(id);
             await initializeTables();
@@ -199,6 +199,15 @@ function updateBudgetWarning(expenseTotal) {
     }
 }
 
+function setBudgetError(message) {
+    const error = $("#budgetError");
+    if (message) {
+        error.text(message).fadeIn(150);
+    } else {
+        error.fadeOut(150);
+    }
+}
+
 async function updateBalance() {
     const totals = await DataManager.calculateTotals();
     const incomeTotal = transactionsByType.income.reduce((sum, t) => sum + t.amount, 0);
@@ -213,8 +222,23 @@ async function updateBalance() {
 
 function handleBudgetInput(value) {
     const cleaned = value.trim();
-    const nextBudget = parseFloat(cleaned);
-    state.budget = Number.isNaN(nextBudget) ? 0 : nextBudget;
+    if (!cleaned) {
+        setBudgetError("");
+        state.budget = 0;
+        localStorage.removeItem("budget");
+        const expenseTotal = transactionsByType.expense.reduce((sum, t) => sum + Math.abs(t.amount), 0);
+        updateBudgetWarning(expenseTotal);
+        return;
+    }
+
+    const nextBudget = Number(cleaned);
+    if (!Number.isFinite(nextBudget) || nextBudget < 0) {
+        setBudgetError("Ingresa un presupuesto valido (numero mayor o igual a 0).");
+        return;
+    }
+
+    setBudgetError("");
+    state.budget = nextBudget;
     localStorage.setItem("budget", state.budget.toString());
     const expenseTotal = transactionsByType.expense.reduce((sum, t) => sum + Math.abs(t.amount), 0);
     updateBudgetWarning(expenseTotal);
