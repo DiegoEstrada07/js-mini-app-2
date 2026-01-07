@@ -49,7 +49,9 @@ app.post('/api/transactions', (req, res) => {
 
     // Add ID and date if not present
     transaction.id = Date.now();
-    transaction.date = new Date().toISOString().split('T')[0];
+    if (!transaction.date) {
+        transaction.date = new Date().toISOString().split('T')[0];
+    }
 
     data.transactions.push(transaction);
 
