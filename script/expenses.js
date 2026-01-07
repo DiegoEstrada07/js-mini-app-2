@@ -233,7 +233,7 @@ function handleBudgetInput(value) {
 
     const nextBudget = Number(cleaned);
     if (!Number.isFinite(nextBudget) || nextBudget < 0) {
-        setBudgetError("Ingresa un presupuesto valido (numero mayor o igual a 0).");
+        setBudgetError("Please enter a valid budget (a number greater than or equal to 0).");
         return;
     }
 
