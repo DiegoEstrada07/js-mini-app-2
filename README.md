@@ -22,7 +22,7 @@ A web application to track income and expenses with an interactive dashboard and
 
 1. Open Git Bash
 
-2. Paste the path: cd "U:\P4 Education\js-mini-app-2\src"
+2. Go to the project folder: cd "...\js-mini-app-2"
 
 3. Run: npm start
 
@@ -52,8 +52,8 @@ js-mini-app-2/
 
 ├── src/
 │   └── data.json            # JSON database
-│   └── package.json         # Dependencies
 
+├── package.json             # Dependencies
 ├── start-server.bat         # Windows start script
 ├── start-server.sh          # Mac/Linux start script
 └── README.md                # This file
@@ -122,7 +122,6 @@ If you have issues, check:
 3. That `src/data.json` exists in the project root
 
 ## Team
-
 - Andrea
 - Diego
 - Gabriel
