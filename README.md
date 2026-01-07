@@ -24,9 +24,11 @@ A web application to track income and expenses with an interactive dashboard and
 
 2. Go to the project folder: cd "...\js-mini-app-2"
 
-3. Run: npm start
+3. Install node: npm install 
 
-4. Open your browser at: http://localhost:3000/pages/home.html
+4. Run: npm start
+
+5. Open your browser at: http://localhost:3000/pages/home.html
 
 
 ## Project Structure
