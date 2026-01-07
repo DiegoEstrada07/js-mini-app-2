@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker — Expenses</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../css/expenses.css" />
 </head>
 
@@ -38,9 +39,6 @@
                     <a class="menu-item" href="../pages/calendar.html">
                         <span class="ico">📅</span><span>Calendar</span>
                     </a>
-                    <a class="menu-item" href="#">
-                        <span class="ico">⚙️</span><span>Settings</span>
-                    </a>
                 </nav>
 
             </aside>
@@ -50,12 +48,12 @@
     <main>
 
         <!-- BOTÓN + -->
-        <button class="add-btn" onclick="openModal()">+</button>
+        <button class="add-btn" id="addBtn">+</button>
 
         <!-- MODAL -->
         <div class="modal" id="modal">
             <div class="modal-content">
-                <h3>Agregar registro</h3>
+                <h3>New Transaction</h3>
 
                 <select id="type">
                     <option value="income">Income</option>
@@ -63,14 +61,27 @@
                 </select>
 
                 <input type="text" id="item" placeholder="Item">
-                <input type="text" id="desc" placeholder="Description">
-                <input type="text" id="category" placeholder="Category">
+                <input type="text" id="note" placeholder="Note">
+                <input type="text" id="category" placeholder="Category" list="categoryList">
+                <datalist id="categoryList"></datalist>
+                <input type="date" id="date">
                 <input type="number" id="qty" placeholder="Amount" step="0.01">
 
-                <button onclick="addData()">Guardar</button>
-                <button class="close-btn" onclick="closeModal()">Cancelar</button>
+                <button id="saveBtn">Save</button>
+                <button class="close-btn" id="cancelBtn">Cancel</button>
             </div>
         </div>
+<section class="controls">
+    <div class="control">
+        <label for="budgetInput">Budget</label>
+        <input type="number" id="budgetInput" placeholder="Budget limit" step="0.01">
+    </div>
+    <div class="control">
+        <label for="filterInput">Filter</label>
+        <input type="text" id="filterInput" placeholder="Search category or item">
+    </div>
+    <div class="budget-warning" id="budgetWarning" aria-live="polite"></div>
+</section>
 
         <div class="container">
 
@@ -116,8 +127,9 @@
                 <div class="footer">Total Expense: <span id="expenseTotal">$0.00</span></div>
             </div>
 
-        <script src="../script/dataManager.js"></script>
-        <script src="../script/expenses.js"></script>
+        </div>
+        
+        <script type="module" src="../script/expenses.js"></script>
     </main>
 </body>
 
