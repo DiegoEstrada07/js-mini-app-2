@@ -121,4 +121,9 @@ If you have issues, check:
 2. Terminal running the server
 3. That `src/data.json` exists in the project root
 
+## Team
+
+- Andrea
+- Diego
+- Gabriel
 
