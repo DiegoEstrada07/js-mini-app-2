@@ -74,12 +74,13 @@
 <section class="controls">
     <div class="control">
         <label for="budgetInput">Budget</label>
-        <input type="number" id="budgetInput" placeholder="Budget limit" step="0.01">
+        <input type="text" id="budgetInput" placeholder="Budget limit" inputmode="decimal">
     </div>
     <div class="control">
         <label for="filterInput">Filter</label>
         <input type="text" id="filterInput" placeholder="Search category or item">
     </div>
+    <div class="budget-error" id="budgetError" aria-live="polite"></div>
     <div class="budget-warning" id="budgetWarning" aria-live="polite"></div>
 </section>
 

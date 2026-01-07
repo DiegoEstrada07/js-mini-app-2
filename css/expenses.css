@@ -183,6 +183,17 @@ body {
     font-weight: 600;
 }
 
+.budget-error {
+    grid-column: 1 / -1;
+    display: none;
+    padding: 10px 12px;
+    border: 1px solid #f3b1b1;
+    border-radius: 8px;
+    background: #ffecec;
+    color: #8a1f1f;
+    font-weight: 600;
+}
+
 .budget-warning.over-budget {
     background: #ffe2e2;
     border-color: #f3b1b1;
