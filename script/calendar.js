@@ -1,3 +1,5 @@
+import { DataManager } from "./dataManager.js";
+
 const STORAGE_KEY = "expense_tracker_items_v1";
 
 /* =========================

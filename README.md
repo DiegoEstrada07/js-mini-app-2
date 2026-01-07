@@ -1,91 +1,90 @@
-# 🪙 Royal Coins - Expense Tracker
+# Royal Coins - Expense Tracker
 
-Una aplicación web para rastrear ingresos y gastos con un dashboard interactivo y servidor Node.js.
+A web application to track income and expenses with an interactive dashboard and a Node.js server.
 
-## 📋 Características
+## Features
 
-- ✅ Dashboard con visualización de Income, Expenses y Savings
-- ✅ Tabla de transacciones recientes
-- ✅ Formulario para agregar Income y Expenses
-- ✅ Base de datos JSON persistente
-- ✅ Servidor Node.js con Express
-- ✅ API RESTful
-- ✅ Sincronización automática
+- Dashboard with Income, Expenses, and Savings visuals
+- Recent transactions table
+- Form to add Income and Expenses
+- Persistent JSON database
+- Node.js server with Express
+- RESTful API
+- Automatic syncing
 
-## 🚀 Instalación y Ejecución
+## Installation and Run
 
-### Requisitos
-- Node.js 14+ ([descargar](https://nodejs.org/))
-- npm (incluido con Node.js)
+### Requirements
+- Node.js 14+ ([download](https://nodejs.org/))
+- npm (included with Node.js)
 
-### Pasos
+### Steps
 
-1. **Abre PowerShell** en la carpeta del proyecto
+1. Open Git Bash
 
-2. **Ejecuta el script de inicio:**
+2. Go to the project folder: cd "...\js-mini-app-2"
 
-```powershell
-.\start-server.bat
-```
+3. Run: npm start
 
-O si prefieres hacerlo manualmente:
+4. Open your browser at: http://localhost:3000/pages/home.html
 
-```powershell
-npm install
-npm start
-```
 
-3. **Abre tu navegador** en:
-```
-http://localhost:3000/pages/home.html
-```
-
-## 📁 Estructura del Proyecto
+## Project Structure
 
 ```
 js-mini-app-2/
-├── server.js                 # Servidor Node.js/Express
-├── data.json                 # Base de datos (JSON)
-├── package.json              # Dependencias
-├── start-server.bat          # Script para Windows
-├── start-server.sh           # Script para Mac/Linux
-├── README.md                 # Este archivo
+├── script/
+│   ├── calendar.js          # Calendar logic
+│   ├── dataManager.js       # API data manager
+│   ├── expenses.js          # Expenses page logic
+│   ├── home.js              # Dashboard logic
+│   └── server.js            # Node.js/Express server
+
 ├── pages/
 │   ├── home.html            # Dashboard
-│   ├── expenses.html        # Agregar Income/Expenses
-│   └── calendar.html        # Calendario (futuro)
-└── src/
-    ├── home.css             # Estilos del dashboard
-    ├── expenses.css         # Estilos de expenses
-    ├── calendar.css         # Estilos del calendario
-    └── dataManager.js       # Gestor de datos (API)
+│   ├── expenses.html        # Add Income/Expenses
+│   └── calendar.html        # Calendar & reminders
+
+├── css/
+│   ├── home.css             # Dashboard styles
+│   ├── expenses.css         # Expenses styles
+│   └── calendar.css         # Calendar styles
+
+├── src/
+│   └── data.json            # JSON database
+
+├── package.json             # Dependencies
+├── start-server.bat         # Windows start script
+├── start-server.sh          # Mac/Linux start script
+└── README.md                # This file
 ```
 
-## 🔄 Cómo Funciona
+## How It Works
 
-### Flujo de Datos
-1. Usuario agrega transacción en **Expenses** → Se envía al servidor
-2. Servidor guarda en **data.json** → Calcula totales
-3. Dashboard en **Home** se actualiza automáticamente
-4. Los datos persisten incluso si cierras el navegador
+### Data Flow
+1. User adds a transaction in **Expenses** -> sent to the server
+2. Server stores it in **data.json** -> recalculates totals
+3. Dashboard in **Home** updates automatically
+4. User adds a Reminder in **Calendar** -> When the payment day has passed, the transaction is added to expenses and the reminder is eliminated.
+4. Data persists even after closing the browser
 
 ### API Endpoints
 
 ```
-GET    /api/transactions      # Obtener todas las transacciones
-POST   /api/transactions      # Agregar nueva transacción
-DELETE /api/transactions/:id  # Eliminar transacción
-GET    /api/totals            # Obtener totales (income/expenses/savings)
+GET    /api/transactions      # Get all transactions
+POST   /api/transactions      # Add a new transaction
+DELETE /api/transactions/:id  # Delete a transaction
+GET    /api/totals            # Get totals (income/expenses/savings)
 ```
 
-## 🛠️ Tecnologías Usadas
+## Technologies Used
 
-- **Frontend**: HTML5, CSS3, JavaScript Vanilla
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Backend**: Node.js, Express.js
 - **Database**: JSON (data.json)
-- **Otros**: CORS, Body Parser
+- **Other**: CORS, Body Parser
 
-## 📝 Ejemplo de Transacción
+## Example Transaction
 
 ```json
 {
@@ -93,35 +92,37 @@ GET    /api/totals            # Obtener totales (income/expenses/savings)
   "date": "2025-01-04",
   "type": "expense",
   "item": "Groceries",
-  "description": "Compras en el supermercado",
+  "description": "Supermarket shopping",
   "category": "Food",
   "amount": -120.00
 }
 ```
 
-## ⚠️ Solución de Problemas
+## Troubleshooting
 
-### "¿El servidor está corriendo?"
-- Asegúrate de que `npm start` está ejecutándose
-- El servidor debe estar en `http://localhost:3000`
+### "Is the server running?"
+- Make sure `npm start` is running
+- The server should be at `http://localhost:3000`
 
-### "Error de conexión al servidor"
-- Verifica que Node.js esté instalado: `node --version`
-- Reinstala dependencias: `npm install`
-- Reinicia el servidor
+### "Server connection error"
+- Check Node.js installation: `node --version`
+- Reinstall dependencies: `npm install`
+- Restart the server
 
-### "Los datos no se guardan"
-- Verifica que `data.json` existe en la carpeta raíz
-- Comprueba los permisos de escritura de la carpeta
-- Revisa la consola del navegador (F12) para errores
+### "Data is not saving"
+- Verify `src/data.json` exists
+- Check write permissions for the project folder
+- Review the browser console (F12) for errors
 
-## 📧 Soporte
+## Support
 
-Si tienes problemas, revisa:
-1. Consola del navegador (F12)
-2. Terminal donde corre el servidor
-3. Que data.json esté en la carpeta raíz del proyecto
+If you have issues, check:
+1. Browser console (F12)
+2. Terminal running the server
+3. That `src/data.json` exists in the project root
 
----
+## Team
+- Andrea
+- Diego
+- Gabriel
 
-**Hecho con ❤️ para Royal Coins**

@@ -1,3 +1,5 @@
+import { DataManager, formatCurrency } from "./dataManager.js";
+
 let pieChart, barChart, lineChart;
 
 async function updateDashboard() {
@@ -90,22 +92,21 @@ function updatePieChart(totals) {
 function updateBarChart(transactions) {
     const ctx = document.getElementById('barChart').getContext('2d');
     
-    const categories = {};
+    const categories = new Map();
     transactions.forEach(t => {
-        const cat = t.category || 'Other';
-        if (!categories[cat]) {
-            categories[cat] = { income: 0, expense: 0 };
-        }
-        if (t.type === 'income') {
-            categories[cat].income += t.amount;
+        const cat = (t.category || "Other").toString().trim() || "Other";
+        const totals = categories.get(cat) || { income: 0, expense: 0 };
+        if (t.type === "income") {
+            totals.income += t.amount;
         } else {
-            categories[cat].expense += Math.abs(t.amount);
+            totals.expense += Math.abs(t.amount);
         }
+        categories.set(cat, totals);
     });
 
-    const labels = Object.keys(categories);
-    const incomeData = labels.map(cat => categories[cat].income);
-    const expenseData = labels.map(cat => categories[cat].expense);
+    const labels = Array.from(categories.keys());
+    const incomeData = labels.map(cat => categories.get(cat).income);
+    const expenseData = labels.map(cat => categories.get(cat).expense);
 
     if (barChart) {
         barChart.destroy();
